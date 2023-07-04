@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SVG Image Editor</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A website where users can upload and edit SVG images">
+    <meta name="keywords" content="">
+    <meta name="author" content="Tyler Ykema">
+    <!-- Load jquery, bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <!-- Custom CSS End -->
+</head>
+<body>
+    <h3 align="center" style="font-size:48px">SVG Image Editor</h3>
+    <div align="center">
+        Upload SVG images to the site in order to view and edit them in the editor below.<br>
+        <p>By Tyler Ykema (1062564)</p>
+    </div>
+    <hr>
+
+    <div id="displaylogin"></div>
+
+    <div id="everything" hidden>
+        <div align="center">
+            <table border = 1 id="fileLogPanel"></table>
+            <p></p>
+            <form ref="uploadform" id="uploadform" action="/upload" method="post" enctype="multipart/form-data" align="center">
+                <input type="file" name="uploadFile" id="input" class="btn btn-primary">
+                <input type="submit" value="Submit File" class="btn btn-secondary">
+            </form>
+        </div>
+
+        <p></p>
+        <!-- <form ref="storedb" method="post" id="storedb" action="/storedb" enctype="multipart/form-data" align="center"> -->
+        <div id="databaseButtons" align="center">
+            <form method="get" id="storedb" action="storedb" class="databaseFrom">
+                <input type="submit" value="Store Files" id="storeButton">
+            </form>
+            <form method="get" id="dbstatus" action="dbstatus" class="databaseFrom">
+                <input type="submit" value="Show Status" id="statusButton">
+            </form>
+            <form method="get" id="cleardb" action="cleardb" class="databaseFrom">
+                <input type="submit" value="Clear Database" id="clearbutton">
+            </form>
+            <!-- <div id="showstored"></div>
+            <div id="showcleared"></div>-->
+            <div id="showstatus"></div>
+        </div>
+
+        <hr>
+
+        <h3 align="center" style="font-size:24px">Query Menu</h3>
+
+        <div id="query1" align="left">
+            <form method="get" id="q1" action="q1">
+                <h3 align="left" style="font-size:16px">Query 1</h3>
+                <input type="submit" value="Search" id="q1button">
+                <label>Sort by:</label>
+                <input type="radio" id="Name" value="Name" name="q1check" checked>
+                <label for="Name">Name</label>
+                <input type="radio" id="Filesize" value="Filesize" name="q1check">
+                <label for="Filesize">File Size</label>
+            </form>
+        </div>
+
+        <div id="q1table" align="center"></div>
+        <br>
+
+        <div id="query2">
+            <h3 align="left" style="font-size:16px">Query 2: Not implemented</h3>
+        </div>
+        <div id="q2table" align="center"></div>
+        <br>
+
+        <div id="query3">
+            <h3 align="left" style="font-size:16px">Query 3: Not implemented</h3>
+        </div>
+        <div id="q3table" align="center"></div>
+        <br>
+
+        <div id="query4">
+            <h3 align="left" style="font-size:16px">Query 4</h3>
+
+            <form method="get" id="q4" action="q4">
+                <label>Enter a range then shape:</label>
+                <input type="text" id="q4text" placeholder="ex. 0-10 rectangles" required>
+                <input type="submit" value="Search" id="q4button">
+                <label>Sort by:</label>
+                <input type="radio" id="q4Name" value="Name" name="q4check" checked>
+                <label for="Name">Name</label>
+                <input type="radio" id="q4Filesize" value="Filesize" name="q4check">
+                <label for="Filesize">File Size</label>
+                <input type="radio" id="q4shapeamount" value="ShapeCount" name="q4check">
+                <label for="ShapeCount">Element Amount</label>
+            </form>
+        </div>
+        <div id="q4table" align="center"></div>
+        <br>
+
+        <div id="query5">
+            <h3 align="left" style="font-size:16px">Query 5</h3>
+
+            <form method="get" id="q5" action="q5">
+                <label>Enter N:</label>
+                <input type="text" id="q5text" placeholder="ex. 5 (must be > 0)" required>
+                <input type="submit" value="Search" id="q5button">
+                <label>Sort by:</label>
+                <input type="radio" id="q5Name" value="q5Name" name="q5check" checked>
+                <label for="q5Name">Name</label>
+                <input type="radio" id="q5downloadamount" value="q5downloadamount" name="q5check">
+                <label for="q5downloadamount">Download amount</label>
+            </form>
+        </div>
+        <div id="q5table" align="center"></div>
+        <br>
+
+        <div id="query6">
+            <h3 align="left" style="font-size:16px">Query 6: Not implemented</h3>
+        </div>
+        <div id="q6table" align="center"></div>
+
+        <hr>
+
+        <div align="center">
+            <form ref="viewform" id="viewform" method="get" enctype="multipart/form-data" action="/view">
+                <label for="images">Select an image to view:</label>
+                <select name="viewT" id="imageSelector" action="/uploads" method="get"></select>
+                <input type="submit" value="View">
+            </form>
+        </div>
+
+        <div align = "center">
+            <table id="viewTable" border="1" style="max-height:1000px">
+            </table>
+        </div>
+        <p>
+
+        <div id="myModal">
+        </div>
+
+        <div align="center">
+            <form method="post" enctype="multipart/form-data">
+                <input type="submit" id="editTitle" value="Edit title/description" name="show" onclick="openForm()"Open Form disabled>
+            </form>
+        </div>
+        <hr>
+
+        <div class="form-popup" id="myForm">
+            <form id="edit" ref="edit" class="form-container">
+                <h1>Edit Title/Description</h1>
+
+                <div class="form-group" id="inputTaD">
+                    <label for="title"><b>Title</b></label>
+                    <input type="text" maxlength="255" placeholder="Enter a Title" name="title" id="titleT">
+
+                    <label for="Description"><b>Description</b></label>
+                    <input type="text" maxlength="255" placeholder="Enter a Description" name="description" id="descT">
+                </div>
+
+                <input id="changeTitle" type="submit" class="btn" action="/edit" value="Submit" onclick="closeForm()">
+                <input type="button" class="btn cancel" onclick="closeForm()" value="Cancel">
+            </form>
+        </div>
+    </div>
+
+    <form action="loginDB" method="get" id="login" align="left" enctype="multipart/form-data" ref="loginform">
+        <div>
+            <h3>Login</h3>
+            <p>Use your central id as your username and student number as password.</p>
+            <div>
+                <label for="Username">Username: </Label>
+                <input type="text" id="Username" placeholder="Username" required maxlength="32">
+            </div>
+            <div>
+                <label for="Password">Password: </label>
+                <input type="password" id="Password" placeholder="Password" required maxlength="32">
+            </div>
+            <div>
+                <label for="Database">Database: </label>
+                <input type="text" id="Database" placeholder="Database" required>
+            </div>
+            <div>
+                <input type="submit" value="Login" id="loginButton">
+            </div>
+
+            <div id="loginSuccess"></div>
+        </div>
+    </form>
+
+    <!-- Leave me at the bottom of body -->
+    <script src="/index.js"></script>
+</body>
+</html>

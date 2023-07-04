@@ -1,0 +1,31 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="20cm" height="16cm" viewBox="0 0 1200 600"
+     xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <title>Example rect - simple revctange wiuth units</title>
+  <rect x="1cm" y="1cm" width="19cm" height="15cm"
+        fill="none" stroke="blue" stroke-width="1" />
+  <rect x="23cm" y="40cm" width="19cm" height="15cm"
+        fill="none" stroke="yellow" stroke-width="1" />
+  <circle cx="23.6cm" cy="34.3cm" r="3.6cm" fill="#231f20"
+        stroke="red" />
+  <circle cx="23.6" cy="34.3" r="3.6" fill="#231f20"
+        stroke="red" />
+  <path d="M200,300 Q400,50 600,300 T1000,300"
+        stroke="red" stroke-width="5"  />
+  <g fill="none">
+      <rect x="1" y="1" width="798" height="43"
+          stroke="green" stroke-width="2" />
+
+      <path d="M200,300 Q400,50 600,300 T1000,300"
+          stroke="red" stroke-width="5"  />
+      <g fill="none">
+          <rect x="1" y="1" width="1198" height="598"
+              stroke="blue" stroke-width="1" />
+
+          <path d="M200,300 Q400,50 600,300 T1000,300"
+              stroke="red" stroke-width="5"  />
+      </g>
+  </g>
+</svg>
